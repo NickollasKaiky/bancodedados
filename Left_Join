@@ -1,0 +1,58 @@
+Respostas das questões de Left Join
+
+1 - Combina dados de duas ou mais tabelas. Quando não existe correspondência, aparece NULL.
+
+2 - Vantagens: Mostra todos os registros da primeira tabela, mesmo quando não existem dados correspondentes na segunda tabela.
+Desvantagens: Pode apresentar valores NULL e gerar resultados maiores, dificultando a análise dos dados.
+
+3 - SELECT
+    cliente.id_cliente,
+    cliente.nome,
+    cliente.idade,
+    loja.nome AS loja,
+    loja.comprou,
+    loja.valor
+FROM cliente
+LEFT JOIN loja
+ON cliente.id_cliente = loja.id_cliente;
+
+4 - SELECT
+    cliente.nome,
+    loja.valor
+FROM cliente
+LEFT JOIN loja
+ON cliente.id_cliente = loja.id_cliente
+ORDER BY loja.valor ASC;
+
+5 - SELECT
+    cliente.nome,
+    cliente.idade,
+    loja.valor
+FROM cliente
+LEFT JOIN loja
+ON cliente.id_cliente = loja.id_cliente
+ORDER BY cliente.nome ASC;
+
+6 - SELECT
+    cliente.nome,
+    loja.valor
+FROM cliente
+LEFT JOIN loja
+ON cliente.id_cliente = loja.id_cliente
+WHERE loja.valor = (
+    SELECT MAX(valor)
+    FROM loja
+);
+
+7 - SELECT
+    nome,
+    idade
+FROM cliente
+WHERE idade = (
+    SELECT MAX(idade)
+    FROM cliente
+);
+
+8 - LEFT JOIN: Mostra todos os registros da tabela da esquerda, mesmo que não tenham correspondência na tabela da direita.
+INNER JOIN: Mostra somente os registros que possuem correspondência nas duas tabelas.
+
