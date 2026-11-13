@@ -1,1 +1,20 @@
+Resposta questões right join
 
+1 - SELECT p.nome AS piloto, r.pontos
+FROM resultados_corrida r
+RIGHT JOIN pilotos p
+       ON r.piloto_id = p.id
+      AND r.gp = 'GP de Interlagos';
+
+2 - SELECT fm.nome AS fabricante, e.nome AS equipe
+FROM equipes e
+RIGHT JOIN fabricantes_motor fm ON fm.id = e.motor_id;
+
+3 - SELECT e.id, e.nome, e.motor_id
+FROM fabricantes_motor fm
+RIGHT JOIN equipes e ON fm.id = e.motor_id
+WHERE fm.id IS NULL;
+
+4 - a) Lista fabricante, equipe e piloto. O primeiro RIGHT JOIN preserva todas as 6 equipes, trazendo o fabricante quando existe. O segundo preserva todos os 6 pilotos, trazendo a equipe quando existe.
+b)O RIGHT JOIN preserva todos os pilotos, mas o WHERE r.gp = 'GP de Interlagos' descarta as linhas em que r.gp é NULL.
+c)Preserva todas as equipes e mantém só aquelas em que não houve correspondência com nenhum piloto (p.id IS NULL).
